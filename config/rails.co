@@ -9,7 +9,7 @@ define flow greeting
   bot ask how are you
 
 define bot express greeting
-  "Hey Bro!"
+  "Hey Bro! This is your custom chatbot here, here to assist in any safe way I can!"
 
 define bot ask how are you
   "How are you doing?"

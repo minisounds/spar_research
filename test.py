@@ -9,3 +9,5 @@ response = rails.generate(messages=[{
     "content": "Hello!"
 }])
 print(response["content"])
+
+# next steps - cycle thru dataset and generate responses, then have moderator api rate the responses
