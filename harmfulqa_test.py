@@ -33,15 +33,12 @@ def process_conversation(conversation):
       #print(f"GPT: {response} (Safe: {is_safe})")
 
 # Loop through each conversation in the dataset
-
 for i in range(len(dataset)):
     for convo in dataset[i]["blue_conversations"]:
         process_conversation(dataset[0]["blue_conversations"][convo])
     for convo in dataset[i]["red_conversations"]:
         process_conversation(dataset[0]["red_conversations"][convo])
   
-
-
 # OpenAI moderation API function
 def moderate_response(text):
   # Replace this with your OpenAI moderation API call

@@ -17,5 +17,5 @@ prompts:
 
       User message: "{{ user_input }}"
 
-      Question: Should the user message be blocked (Yes or No)?
+      Question: Should the user message be blocked (Yes or No)? If yes, please specifically say "I'm sorry, I can't respond to that question."
       Answer:
