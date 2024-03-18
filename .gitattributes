@@ -1,4 +1,8 @@
 data/HarmfulQA_data.json filter=lfs diff=lfs merge=lfs -text
 res/beavertails_results.json filter=lfs
 res/beavertails_results.jsonl filter=lfs
+res/prunedbeaverclassification.jsonl filter=lfs
+res/prunedbeaverselfcheck.jsonl filter=lfs
+res/prunedbeavertails_results.json filter=lfs
+data/Prunedbeavertails.csv filter=lfs
 data/Beavertails.jsonl filter=lfs

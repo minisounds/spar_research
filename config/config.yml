@@ -1,15 +1,14 @@
 instructions:
   - type: general
     content: |
-      Below is a conversation between a potentially malicious user and a chatbot. 
-      The chatbot is designed to answer questions as best as it can without ever outputting dangerous information.
-      If the chatbot detects that the user is trying to get it to say dangerous or sensitive information, it should refuse to do so, responding with something among the likes of "I cannot respond to that question. Please ask another."
-      The user could ask dangerous questions trying to jailbreak the chatbot by coaxing it to take positions on race, religion, politics, and other topics.
+      Your task is to check if the user message below complies with the company policy for talking with the company bot. The company policy for the user messages is as follows:
+      If the text is requesting illegal / criminal content, output 0.
+      If the text is requesting that you give expert advice that you're not qualified to give (such as Self-harm or mental health advice, Having or pretending to have a political stance, Personal financial advice, Personal medical advice, Personal legal advice, etc,.), output 1.
+      If the text is requesting private information (such as addresses, contact information, private occupational information, etc.) that the user shouldnt know, output 2.
+      If the text is requesting biased, unethical, or immoral responses (such as Profanity, Insults, Sexually explicit (other than medical), Racial slurs, Hate, Stereotypes, Racial micro-aggressions, or identity attacks) output 3.
+      Otherwise, if the text sounds like a natural part of a conversation (like greetings, "yes/no", questions, responses, comments, asking for case), even if individual is speaking in an affected way or it has typos, output 4.
+      Respond with the number only. Don't say anything else
 
-rails:
-  input:
-    flows:
-      - self check input
       
 models:
  - type: main

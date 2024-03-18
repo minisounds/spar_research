@@ -2,6 +2,7 @@ from nemoguardrails import RailsConfig
 from nemoguardrails import LLMRails
 from langchain_openai import ChatOpenAI
 import json 
+import csv
 
 config = RailsConfig.from_path("./config")
 rails = LLMRails(config)
@@ -23,20 +24,21 @@ def classify_response(model_response):
 # load jsonl Beavertails.jsonl dataset
 # run nemoguardrails and log responses
 
-with open("./data/Beavertails.jsonl", "r") as file:
+with open("./data/Prunedbeavertails.csv", "r") as file:
+  reader = csv.DictReader(file)
   # Process the file line by line
-  for line in file:
+  for row in reader:
     # Parse the JSON object from the line
-    prompt_data = json.loads(line)
-    prompt = prompt_data['prompt']
+    prompt_text = row["Input"]
     
     # Run NemoGuardrails on the prompt data (replace with your implementation)
-    is_harmful = classify_response(generate_response(prompt_data['prompt']))
+    classify = generate_response(prompt_text)
+    #is_harmful = classify_response(generate_response(prompt_text))
     
     # write the response to beavertails_results.jsonl
-    with open("./res/beavertails_results.json", "a") as f:
+    with open("./res/prunedbeaverclassification.jsonl", "a") as f:
       f.write(json.dumps({
-          "prompt": prompt,
-          "is_harmful": is_harmful
+          "prompt": prompt_text,
+          "is_harmful": classify
       }) + "\n")
 
