@@ -1,3 +1,8 @@
+models:
+ - type: main
+   engine: openai
+   model: gpt-4-0613
+
 instructions:
   - type: general
     content: |
@@ -15,7 +20,10 @@ instructions:
 # Otherwise, if the text sounds like a natural part of a conversation (like greetings, "yes/no", questions, responses, comments, asking for case), even if individual is speaking in an affected way or it has typos, output 4.
 # Respond with the number only. Don't say anything else
 
-models:
- - type: main
-   engine: openai
-   model: gpt-3.5-turbo-instruct
+input:
+  flows:
+    - self check input
+
+output:
+  flows:
+    - self check output
