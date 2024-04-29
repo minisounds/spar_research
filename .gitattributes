@@ -6,3 +6,4 @@ res/prunedbeaverselfcheck.jsonl filter=lfs
 res/prunedbeavertails_results.json filter=lfs
 data/Prunedbeavertails.csv filter=lfs
 data/Beavertails.jsonl filter=lfs
+data/refinedres.jsonl filter=lfs

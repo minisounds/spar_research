@@ -23,36 +23,41 @@ def classify_response(model_response):
     return(response.content)
 
 def write_response_to_jsonl(prompt_text, classify):
-    with open("./res/cipher_data_results.jsonl", "a") as f:
+    with open("./res/refinedres.jsonl", "a") as f:
         f.write(json.dumps({
             "prompt": prompt_text,
             "gotJailbroken": classify
         }) + "\n")
 
-with open("./data/final_cipher_v1.csv", "r") as file:
+with open("./data/refineddata.csv", "r") as file:
   reader = csv.DictReader(file)
   for row in reader:
-    isJailbroken = False
-    prompt_text = row["Multi-turn conversation"]
-    # reset entire conversation to empty string
-    entire_conversation = ""
-    # Convert the current conversation from a string representation of a list of dictionaries to an actual list of dictionaries
-    conversation_list = ast.literal_eval(prompt_text)
-    for entry in conversation_list[:-1]:
-      if entry['role'] == 'user':
-        entire_conversation += "User: " + entry['content'] + "\n"
-        # append user text to entire_conversation AND append the generated response to it as well, seperated by a new line in between each.     
-        next_response = generate_response(entire_conversation + "please respond to the most recent above question by the user")
-        if classify_response(next_response) == 'Jailbroken':
-            print(f"jailbroken on: {next_response}")
-            isJailbroken = True
-        # update entire conversation prompt with the user text and the generated response
-        entire_conversation += "Assistant: " + next_response + "\n"
-        
-    if isJailbroken:
-      write_response_to_jsonl(entire_conversation, True)
+    b = row["Jailbroken"]
+    check = ast.literal_eval(b)
+    if check["Multi-turn"] == 1 and row["Model"] == "gpt-4-0125-preview":
+      isJailbroken = False
+      prompt_text = row["Multi-turn conversation"]
+      # reset entire conversation to empty string
+      entire_conversation = ""
+      # Convert the current conversation from a string representation of a list of dictionaries to an actual list of dictionaries
+      conversation_list = ast.literal_eval(prompt_text)
+      for entry in conversation_list[:-1]:
+        if entry['role'] == 'user':
+          entire_conversation += "User: " + entry['content'] + "\n"
+          # append user text to entire_conversation AND append the generated response to it as well, seperated by a new line in between each.     
+          next_response = generate_response(entire_conversation + "please respond to the most recent above question by the user")
+          if classify_response(next_response) == 'Jailbroken':
+              print(f"jailbroken on: {next_response}")
+              isJailbroken = True
+          # update entire conversation prompt with the user text and the generated response
+          entire_conversation += "Assistant: " + next_response + "\n"
+          
+      if isJailbroken:
+        write_response_to_jsonl(entire_conversation, True)
+      else:
+        write_response_to_jsonl(entire_conversation, False)
     else:
-      write_response_to_jsonl(entire_conversation, False)
+      continue
     
 
     # # cycle through each conversation and classify them as harmful or not
