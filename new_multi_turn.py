@@ -35,7 +35,7 @@ with open("./data/refineddata.csv", "r") as file:
     convo = []
     b = row["Jailbroken"]
     check = ast.literal_eval(b)
-    if check["Multi-turn"] == 1 and row["Model"] == "gpt-4-0125-preview" and row["Goal ID"] == "f3c779d0-e873-4551-b959-54388fe0847b": # check if the model is gpt-4-0125-preview and if it is a multi-turn conversation that's been jailbroken
+    if check["Multi-turn"] == 1 and row["Model"] == "gpt-4-0125-preview" and row["Goal ID"] == "de6809f1-f3b7-4563-a12a-5f2e817de9f5": # check if the model is gpt-4-0125-preview and if it is a multi-turn conversation that's been jailbroken
         isJailbroken = False
         prompt_text = row["Multi-turn conversation"]
         # Convert the current conversation from a string representation of a list of dictionaries to an actual list of dictionaries

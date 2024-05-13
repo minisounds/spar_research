@@ -7,3 +7,6 @@ res/prunedbeavertails_results.json filter=lfs
 data/Prunedbeavertails.csv filter=lfs
 data/Beavertails.jsonl filter=lfs
 data/refinedres.jsonl filter=lfs
+data/Nemo_dataset.json filter=lfs
+data/dataset_nemo.json filter=lfs
+res/multimodalres.jsonl filter=lfs
