@@ -10,7 +10,7 @@ import json
 #     print(f"Amount of harmful responses: {harmful_count}")
 
 # go through each entry in pruinedbeaverclassification.jsonl and count the amount of times is_harmful is '1', '2', and '3'
-with open("./res/multiturn_results.jsonl", "r") as file:
+with open("./res/multiturn_3.5_convoaware_results.jsonl", "r") as file:
     harmful_count = 0 
     safe_count = 0
     line_count = 1
